@@ -9,8 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^5.12.5",
     "underscore": "^1.13.1"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "jshint": "^2.12.0"
+  }
 }
