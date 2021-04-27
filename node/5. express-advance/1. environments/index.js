@@ -1,7 +1,6 @@
 import express from "express";
 const app = express();
 import Joi from "joi";
-import MiddleWare from "./logger.js";
 import helmet from "helmet";
 import morgan from "morgan";
 
@@ -9,9 +8,14 @@ import morgan from "morgan";
 app.use(express.json());
 app.use(helmet());
 
-// Custom Middleware
-app.use(MiddleWare.log);
-app.use(MiddleWare.auth);
+// We can access env from 2 ways
+// process.env.NODE_ENV -> returns undefined by default
+// app.get("env") -> returns development by default
+
+if (app.get("env") === "development") {
+  app.use(morgan("dev"));
+  console.log("Morgan enabled....");
+}
 
 const courses = [
   { id: 1, name: "course1" },

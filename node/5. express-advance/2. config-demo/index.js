@@ -9,9 +9,14 @@ import morgan from "morgan";
 app.use(express.json());
 app.use(helmet());
 
+if (app.get("env") === "development") {
+  app.use(morgan("dev"));
+  console.log("Morgan enabled....");
+}
+
 // Custom Middleware
-app.use(MiddleWare.log);
-app.use(MiddleWare.auth);
+// app.use(MiddleWare.log);
+// app.use(MiddleWare.auth);
 
 const courses = [
   { id: 1, name: "course1" },
