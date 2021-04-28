@@ -7,8 +7,10 @@ const dbDebugger = debug("app:db");
 
 if (app.get("env") == "development") {
   app.use(morgan("dev"));
-  console.log("Morgan enabled...");
+  startupDebugger("Morgan enabled...");
 }
+
+dbDebugger("Db connected...");
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
