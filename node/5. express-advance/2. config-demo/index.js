@@ -1,22 +1,23 @@
 import express from "express";
 const app = express();
 import Joi from "joi";
-import MiddleWare from "./logger.js";
 import helmet from "helmet";
 import morgan from "morgan";
+import config from "config";
 
 // MiddleWare
 app.use(express.json());
 app.use(helmet());
 
+// Using config file
+console.log(config.get("name"));
+console.log(config.get("mail.host"));
+console.log(config.get("mail.password"));
+
 if (app.get("env") === "development") {
   app.use(morgan("dev"));
   console.log("Morgan enabled....");
 }
-
-// Custom Middleware
-// app.use(MiddleWare.log);
-// app.use(MiddleWare.auth);
 
 const courses = [
   { id: 1, name: "course1" },
